@@ -1,7 +1,6 @@
 language: python
 cache: pip
 python:
-- '3.5'
 - '3.6'
 - '3.7'
 - '3.8'
@@ -11,10 +10,8 @@ env:
 services:
   - postgresql
 install:
-- pip install . psycopg2-binary
-matrix:
+- pip3 install . psycopg2-binary
+jobs:
   fast_finish: true
-before_script:
-  - psql -c 'create database postgres;' -U postgres
 script:
 - python tests/runtests.py
