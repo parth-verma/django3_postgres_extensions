@@ -17,10 +17,8 @@ appropriate.
 """
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django_postgres_extensions.models.fields.related import ArrayManyToManyField
 
-@python_2_unicode_compatible
 class Person(models.Model):
     name = models.CharField(max_length=20)
     friends = ArrayManyToManyField('self')

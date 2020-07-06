@@ -216,5 +216,5 @@ class PostgresAdminTestCase(AdminSeleniumTestCase):
         prod.save()
         prod.buyers.add(buyer1, buyer3)
         self.selenium.get('%s/%s/%s' % (self.url, prod.pk, 'delete'))
-        self.selenium.find_element_by_xpath('//input[@value="Yes, I\'m sure"]').click()
+        self.selenium.find_element_by_xpath('//input[@type="submit"]').click()
         self.assertEqual(Product.objects.count(), 0)

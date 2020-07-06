@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import transaction
 from django.test import TestCase
-from django.utils import six
 
 from .models import Article, InheritedArticleA, InheritedArticleB, Publication
 
@@ -54,7 +53,8 @@ class ManyToManyTests(TestCase):
         a6 = Article.objects.get(pk=a6.pk)
         self.assertListEqual(a6.publications_ids, [self.p1.id, self.p2.id, self.p3.id])
         # Adding an object of the wrong type raises TypeError
-        with six.assertRaisesRegex(self, TypeError, "'Publication' instance expected, got <Article.*"):
+        # self.assertRa
+        with self.assertRaisesRegex(TypeError, "'Publication' instance expected, got <Article.*"):
             with transaction.atomic():
                 a6.publications.add(a5)
 
